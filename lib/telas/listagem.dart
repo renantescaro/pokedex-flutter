@@ -44,7 +44,7 @@ class ListaState extends State<Lista>{
           title: Center(child: Text(pokemon.nome)),
           content: Column(
             children: <Widget>[
-              Image.network(pokemon.urlImagem),
+              Image.network(api.getImagemPokemon(pokemon.nomeImagem)),
             ],
           ),
         );

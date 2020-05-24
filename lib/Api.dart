@@ -4,13 +4,17 @@ import 'package:pokemon/Pokemon.dart';
 import 'dart:developer' as developer;
 
 class Api{
-  final String urlApi = 'http://192.168.1.207';
+  final String urlApi = 'http://192.168.1.201';
 
   Future<List<Pokemon>> consultarPokemonPorNome(String nome) async{
     dynamic resposta = await getHttp(urlApi+'/?consultar-pokemon-nome&nome='+nome);
     List respostaJson = json.decode(resposta);
 
     return respostaJson.map((pokemon)=>new Pokemon.fromJson(pokemon)).toList();
+  }
+
+  String getImagemPokemon(String nomeImagem){
+    return (urlApi+'/public/images/'+nomeImagem);
   }
 
   getHttp(url) async{

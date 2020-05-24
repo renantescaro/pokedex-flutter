@@ -1,15 +1,15 @@
 class Pokemon{
   String nome;
   String tipo;
-  String urlImagem;
+  String nomeImagem;
 
-  Pokemon({this.nome,this.tipo, this.urlImagem});
+  Pokemon({this.nome,this.tipo, this.nomeImagem});
 
   factory Pokemon.fromJson(Map<String, dynamic> json){
     return Pokemon(
       nome:json['nome'],
       tipo:json['tipo'],
-      urlImagem: json['imagem']
+      nomeImagem: json['imagem']
     );
   }
 }
