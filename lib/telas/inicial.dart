@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokemon/telas/listagem.dart';
 
 class Inicial extends StatelessWidget{
   @override
@@ -19,8 +20,31 @@ class InicialPage extends StatefulWidget{
 }
 
 class InicialPageState extends State<InicialPage>{
-  buscarPokemon(){
 
+  final TextEditingController txtPesquisa = new TextEditingController();
+
+  pesquisaPokemon(){
+    if(txtPesquisa.text == ''){
+      mostrarMensagem('Pesquisa vazia!');
+    }else{
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Lista(txtPesquisa.text)),
+      );
+    }
+  }
+
+  Future<void> mostrarMensagem(mensagem) async{
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          actions: <Widget>[
+            Text(mensagem)
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -29,21 +53,24 @@ class InicialPageState extends State<InicialPage>{
       appBar: AppBar(
         title: Text('Pokedex'),
       ),
-      body: Center(
+      body: Container(
+        margin: EdgeInsets.symmetric(horizontal: 22),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Image(image: AssetImage('assets/pokeball.png'),height: 120,),
             Text(
-              'Busca por Pokemon',
-              style: TextStyle(fontSize: 20),
+              'Pesquise pelo nome do Pokemon',
+              style: TextStyle(fontSize: 21),
             ),
             TextField(
-              
+              controller: txtPesquisa,
             ),
             RaisedButton(
-              child: Text('Buscar', style: TextStyle(color: Colors.white)),
-              onPressed: buscarPokemon,
+              child: Text('Pesquisar', style: TextStyle(color: Colors.white)),
+              onPressed: pesquisaPokemon,
               color: Colors.red,
+              padding: EdgeInsets.all(10),
             ),
           ],
         ),
