@@ -32,10 +32,6 @@ class ListaState extends State<Lista>{
     );
   }
 
-  teste(){
-
-  }
-
   mostrarMensagem(pokemon, context){
     return showDialog(
       context: context,
@@ -45,6 +41,7 @@ class ListaState extends State<Lista>{
           content: Column(
             children: <Widget>[
               Image.network(api.getImagemPokemon(pokemon.nomeImagem)),
+              Text(pokemon.descricao)
             ],
           ),
         );
